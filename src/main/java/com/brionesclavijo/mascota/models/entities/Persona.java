@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,6 +42,7 @@ public class Persona implements Serializable {
 	
 	public Persona() {
 		super();
+		usuario=new Usuario();
 	}
 	
 	public Persona(Integer id) {
@@ -90,7 +92,8 @@ public class Persona implements Serializable {
 	}
 	//Relacion con la tabla
 	
-	@OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+	@JoinColumn(name="usuario_id",unique=true)
+	@OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 	
 	
@@ -112,11 +115,13 @@ public class Persona implements Serializable {
 	public void setLstadopcion(List<Adopcion> lstadopcion) {
 		this.lstadopcion = lstadopcion;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.getNombre();
+		return cedula+ " - " +nombre ;
 	}
+	
+	
 
 
 }

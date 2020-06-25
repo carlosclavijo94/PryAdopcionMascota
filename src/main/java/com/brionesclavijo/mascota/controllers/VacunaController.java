@@ -48,7 +48,7 @@ public class VacunaController {
 		return "redirect:/vacuna/list";		
 	}
 	
-	@GetMapping(value="/list")
+	@GetMapping(value={"","/","/list"})
 	public String list(Model model) {
 		List<Vacuna> vacunas = srvVacuna.findAll();
 		model.addAttribute("vacunas", vacunas);

@@ -48,7 +48,7 @@ public class UsuarioController {
 		return "redirect:/usuario/list";		
 	}
 	
-	@GetMapping(value="/list")
+	@GetMapping(value={"","/","/list"})
 	public String list(Model model) {
 		List<Usuario> usuarios = srvUsuario.findAll();
 		model.addAttribute("usuarios", usuarios);

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+
+		<div class="contact">
+			<div class="container">
+				<h3 class="agileits-title" th:text="${title}"></h3>
+
+				<div class="contact-agileinfo">
+					<div class="col-md-7 contact-right">
+					
+						<form th:action="@{/carnet/save}" th:object="${carnet}" method="post">
+						<div class="form-group row">
+							<h6>Fecha Vacunaci&oacute;n: </h6>
+							<input type="date" th:field="*{fechaVacunacion}">
+							</div>
+							<div class="form-group row">
+							<input type="text" th:field="*{observacion}" placeholder="Observaci&oacute;n">
+							</div>
+							<h6>Mascotas: </h6>
+							<div class="form-group row ">
+								<select class="form-control" th:field=*{mascota.idmascota}>
+									<option value=0>
+									<option th:each="m : ${mascotas}"
+										th:value= "${m.idmascota}" th:text="${m.toString()}" >
+										
+									</option>
+								</select>
+							</div>
+							<h6>Vacunas: </h6>
+							<div class="form-group row ">
+								<select class="form-control" th:field=*{vacuna.idvacuna}>
+									<option value=0>
+									<option th:each="v : ${vacunas}"
+										th:value= "${v.idvacuna}" th:text="${v.toString()}" >
+										
+									</option>
+								</select>
+							</div>
+							<hr>
+							
+																		
+							<div class="form-group col-sm-4">	
+							
+								<input type="submit"
+								class="btn btn-success btn-user btn-block"
+								value="Guardar" />
+								    
+								    <a  th:href="@{/carnet/list}"
+								class="btn btn-danger btn-user btn-block"
+							    >Cancelar</a>
+								  								    
+							</div>
+							
+							<input type="hidden" th:field="*{idcarnetVacunacion}" />
+						</form>
+						
+					</div>
+					
+					
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>

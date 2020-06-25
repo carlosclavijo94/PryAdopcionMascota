@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+
+		<div class="contact">
+			
+			<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>					
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Fecha Vacunaci&oacute;n</th>
+								
+								<th>Observaci&oacute;n</th>
+								
+								<th>Mascota</th>
+								
+								<th>Vacuna</th>
+								<th><a class="btn btn-sm btn-success"
+									th:href="@{/carnet/create}">&nbsp;Nuevo</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="lc : ${lstcarnet}">
+								<td th:text="${lc.fechaVacuna()}"></td>
+								
+								<td th:text="${lc.observacion}"></td>
+								<td th:text="${lc.mascota.toString()}"></td>
+								<td th:text="${lc.vacuna.toString()}"></td>
+								<td><a class="btn btn-sm btn-warning"
+									th:href="@{/carnet/update/} + ${lc.idcarnetVacunacion}">&nbsp;Actualizar</a>
+									<a class="btn btn-sm btn-info"
+									th:href="@{/carnet/retrieve/} + ${lc.idcarnetVacunacion}">&nbsp;Consultar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- /.container-fluid -->
+			
+		</div>
+
+	</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>

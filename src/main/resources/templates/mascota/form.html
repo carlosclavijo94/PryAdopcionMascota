@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+
+		<div class="contact">
+			<div class="container">
+				<h3 class="agileits-title" th:text="${title}"></h3>
+
+				<div class="contact-agileinfo">
+					<div class="col-md-7 contact-right">
+					
+						<form th:action="@{/mascota/save}" th:object="${mascota}" method="post">
+						<div class="form-group row">
+							<input type="text" th:field="*{nombre}" placeholder="Nombre">
+							</div>
+							<div class="form-group row">
+							<input type="number" th:field="*{edad}" placeholder="Edad en a&ntilde;os">
+							</div>
+							<div class="form-group row"> 
+							<input type="text" th:field="*{color}" placeholder="Color">
+							</div>
+							<h6>Tipo Mascota:</h6>
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									<label class="radio-inline"><input type="radio"
+										th:field="*{tipoMascota}" value="PERRO" checked />&nbsp;Perro</label>
+								</div>
+								<div class="col-sm-6">
+									<label class="radio-inline"><input type="radio"
+										th:field="*{tipoMascota}" value="GATO" />&nbsp;Gato</label>
+								</div>
+							</div>
+							<div class="form-group row">
+								<input type="text" th:field="*{raza}" placeholder="Raza">
+							</div>
+						
+									
+							<div class="form-group col-sm-4">	
+							
+								<input type="submit"
+								class="btn btn-success btn-user btn-block"
+								value="Guardar" />
+								    
+								    <a  th:href="@{/mascota/list}"
+								class="btn btn-danger btn-user btn-block"
+							    >Cancelar</a>
+								  								    
+							</div>
+							
+							
+							
+							<input type="hidden" th:field="*{idmascota}" />
+						</form>
+						
+					</div>
+					
+					
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+
+		<div class="contact">
+			
+			<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>					
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Fecha Publicaci&oacute;n</th>
+								<th>Fecha Asignaci&oacute;n</th>
+								<th>Estado</th>
+								<th>Observaci&oacute;n</th>
+								<th>Persona</th>
+								<th>Mascota</th>
+								<th><a class="btn btn-sm btn-success"
+									th:href="@{/adopcion/create}">&nbsp;Nuevo</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ad : ${adopciones}">
+								<td th:text="${ad.fechaPublic()}"></td>
+								<td th:text="${ad.fechaAsignacion()}"></td>
+								<td th:text="${ad.estado}"></td>
+								<td th:text="${ad.observacion}"></td>
+								<td th:text="${ad.persona.toString()}"></td>
+								<td th:text="${ad.mascota.toString()}"></td>
+								<td><a class="btn btn-sm btn-warning"
+									th:href="@{/adopcion/update/} + ${ad.idadopcion}">&nbsp;Actualizar</a>
+									<a class="btn btn-sm btn-info"
+									th:href="@{/adopcion/retrieve/} + ${ad.idadopcion}">&nbsp;Consultar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- /.container-fluid -->
+			
+		</div>
+
+	</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>

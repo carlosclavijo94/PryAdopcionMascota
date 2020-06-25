@@ -1,18 +1,16 @@
 package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity  
@@ -69,19 +67,18 @@ public class Vacuna implements Serializable {
 	//Relaciones entre tablas
 	
 
-	@JoinColumn(name="fk_carnet", referencedColumnName="pk_carnetVacunacion")
-	@ManyToOne
-	private CarnetVacunacion carnet;
+	@OneToMany(mappedBy="vacuna", fetch=FetchType.LAZY) 
+	private List<CarnetVacunacion> lstcarnet;
 	
-
-	public CarnetVacunacion getCarnet() {
-		return carnet;
+	
+	public List<CarnetVacunacion> getLstcarnet() {
+		return lstcarnet;
 	}
 
-	public void setCarnet(CarnetVacunacion carnet) {
-		this.carnet = carnet;
+	public void setLstcarnet(List<CarnetVacunacion> lstcarnet) {
+		this.lstcarnet = lstcarnet;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.getNombre();

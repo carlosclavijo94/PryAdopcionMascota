@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.brionesclavijo.mascota.models.entities.Persona;
 import com.brionesclavijo.mascota.models.services.IPersonaService;
 
+
 @Controller
 @RequestMapping(value="/persona")  
 public class PersonaController {
 	@Autowired 
 	private IPersonaService srvPersona;
+	
 	
 	@GetMapping(value="/create") //https://localhost:8084/persona/create
 	public String create(Model model) {
@@ -48,7 +50,7 @@ public class PersonaController {
 		return "redirect:/persona/list";		
 	}
 	
-	@GetMapping(value="/list")
+	@GetMapping(value={"","/","/list"})
 	public String list(Model model) {
 		List<Persona> personas = srvPersona.findAll();
 		model.addAttribute("personas", personas);

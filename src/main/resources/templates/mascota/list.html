@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+			<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>					
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Edad</th>
+								<th>Color</th>
+								<th>Tipo Mascota</th>
+								<th>Raza</th>
+								<th><a class="btn btn-sm btn-success"
+									th:href="@{/mascota/create}">&nbsp;Nuevo</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="m : ${mascotas}">
+								<td th:text="${m.nombre}"></td>
+								<td th:text="${m.edad}"></td>
+								<td th:text="${m.color}"></td>
+								<td th:text="${m.tipoMascota}"></td>
+								<td th:text="${m.raza}"></td>
+								<td><a class="btn btn-sm btn-warning"
+									th:href="@{/mascota/update/} + ${m.idmascota}">&nbsp;Actualizar</a>
+									<a class="btn btn-sm btn-info"
+									th:href="@{/mascota/retrieve/} + ${m.idmascota}">&nbsp;Consultar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- /.container-fluid -->
+						
+		</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>

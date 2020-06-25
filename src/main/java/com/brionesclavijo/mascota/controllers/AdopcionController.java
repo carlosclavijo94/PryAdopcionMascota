@@ -11,19 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brionesclavijo.mascota.models.entities.Adopcion;
+import com.brionesclavijo.mascota.models.entities.Persona;
+import com.brionesclavijo.mascota.models.entities.Mascota;
 import com.brionesclavijo.mascota.models.services.IAdopcionService;
+import com.brionesclavijo.mascota.models.services.IMascotaService;
+import com.brionesclavijo.mascota.models.services.IPersonaService;
 
 @Controller
 @RequestMapping(value="/adopcion")  
 public class AdopcionController {
+	
 	@Autowired 
 	private IAdopcionService srvAdopcion;
+	
+	@Autowired 
+	private IPersonaService srvPersona;
+	
+	@Autowired
+	private IMascotaService srvMascota;
 	
 	@GetMapping(value="/create") //https://localhost:8084/adopcion/create
 	public String create(Model model) {
 		Adopcion adopcion = new Adopcion();
+		
 		model.addAttribute("title", "Registro de nueva adopcion");
-		model.addAttribute("adopcion", adopcion); 
+		model.addAttribute("adopcion", adopcion); 		
+		List<Persona> personas = srvPersona.findAll();
+		model.addAttribute("personas", personas);
+		List<Mascota> mascotas = srvMascota.findAll();
+		model.addAttribute("mascotas", mascotas);
+		
 		return "adopcion/form";
 	}
 	
@@ -39,6 +56,13 @@ public class AdopcionController {
 		Adopcion adopcion = srvAdopcion.findById(id);
 		model.addAttribute("adopcion", adopcion);
 		model.addAttribute("title", "Actualizando el registro de " + adopcion);
+		
+		List<Persona> personas = srvPersona.findAll();
+		model.addAttribute("personas", personas);
+		
+		List<Mascota> mascotas = srvMascota.findAll();
+		model.addAttribute("mascotas", mascotas);
+		
 		return "adopcion/form";
 	}
 	
@@ -48,7 +72,7 @@ public class AdopcionController {
 		return "redirect:/adopcion/list";		
 	}
 	
-	@GetMapping(value="/list")
+	@GetMapping(value={"","/","/list"})
 	public String list(Model model) {
 		List<Adopcion> adopciones = srvAdopcion.findAll();
 		model.addAttribute("adopciones", adopciones);
@@ -58,7 +82,7 @@ public class AdopcionController {
 	
 	
 	@PostMapping(value="/save") 
-	public String save(Adopcion adopcion, Model model) {
+	public String save(Adopcion adopcion, Model model)  {
 		srvAdopcion.save(adopcion);
 		return "redirect:/adopcion/list";
 	}

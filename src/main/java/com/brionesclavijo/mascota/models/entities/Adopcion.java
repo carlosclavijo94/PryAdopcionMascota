@@ -1,6 +1,7 @@
 package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="adopcion")
@@ -28,14 +33,15 @@ public class Adopcion implements Serializable {
 	@Column(name="pk_adopcion")
 	private Integer idadopcion;
 	
-	@Column(name="fecha_publicacion")	
+	@Column(name="fecha_publicacion")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Calendar fechaPublicacion;
 	
 	@Column(name="fecha_asignacion")	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Calendar fechaAsignacion;
-	
-	@Column(name="imagen")	
-	private byte[] imagen;
 	
 	@Column(name="estado")
 	private String estado;
@@ -76,14 +82,6 @@ public class Adopcion implements Serializable {
 		this.fechaAsignacion = fechaAsignacion;
 	}
 
-	public byte[] getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(byte[] imagen) {
-		this.imagen = imagen;
-	}
-
 	public String getEstado() {
 		return estado;
 	}
@@ -102,22 +100,21 @@ public class Adopcion implements Serializable {
 	
 	//Realacion de tablas
 	
-	@OneToMany(mappedBy="adopcion", fetch=FetchType.LAZY) 
-	private List<Mascota> lstamascota;
+	@JoinColumn(name="fk_mascota", referencedColumnName="pk_mascota")
+	@ManyToOne
+	private Mascota mascota;
 	
 	
 	@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
 	@ManyToOne
 	private Persona persona;
-	
-	
 
-	public List<Mascota> getLstamascota() {
-		return lstamascota;
+	public Mascota getMascota() {
+		return mascota;
 	}
 
-	public void setLstamascota(List<Mascota> lstamascota) {
-		this.lstamascota = lstamascota;
+	public void setMascota(Mascota mascota) {
+		this.mascota = mascota;
 	}
 
 	public Persona getPersona() {
@@ -126,6 +123,20 @@ public class Adopcion implements Serializable {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+
+	@Override
+	public String toString() {
+		return estado;
+	}
+	
+	public String fechaPublic() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaPublicacion.getTime());
+	}
+	public String fechaAsignacion() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaAsignacion.getTime());
 	}
 
 }

@@ -19,6 +19,8 @@ public class MascotaController {
 	@Autowired 
 	private IMascotaService srvMascota;
 	
+	
+	
 	@GetMapping(value="/create") //https://localhost:8084/mascota/create
 	public String create(Model model) {
 		Mascota mascota = new Mascota();
@@ -48,7 +50,7 @@ public class MascotaController {
 		return "redirect:/mascota/list";		
 	}
 	
-	@GetMapping(value="/list")
+	@GetMapping(value={"","/","/list"})
 	public String list(Model model) {
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);

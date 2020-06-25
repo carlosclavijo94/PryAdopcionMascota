@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -61,18 +59,6 @@ public class Usuario implements Serializable {
 
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
-	
-	@OneToOne
-    @JoinColumn(name = "fk_persona", updatable = false, nullable = false)
-    private Persona persona;
-
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
 	}
 	
 	@Override

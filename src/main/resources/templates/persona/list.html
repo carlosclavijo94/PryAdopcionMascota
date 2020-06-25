@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+			<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>					
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>C&eacute;dula</th>
+								<th>Nombre</th>
+								<th>Direci&oacute;n</th>
+								<th>Tel&eacute;fono</th>
+								<th>Usuario</th>
+								<th><a class="btn btn-sm btn-success"
+									th:href="@{/persona/create}">&nbsp;Nuevo</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p : ${personas}">
+								<td th:text="${p.cedula}"></td>
+								<td th:text="${p.nombre}"></td>
+								<td th:text="${p.direccion}"></td>
+								<td th:text="${p.telefono}"></td>
+								<td th:text="${p.usuario.toString()}"></td>
+								<td><a class="btn btn-sm btn-warning"
+									th:href="@{/persona/update/} + ${p.idpersona}">&nbsp;Actualizar</a>
+									<a class="btn btn-sm btn-info"
+									th:href="@{/persona/retrieve/} + ${p.idpersona}">&nbsp;Consultar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- /.container-fluid -->
+						
+		</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+
+
+
+</body>
+</html>
