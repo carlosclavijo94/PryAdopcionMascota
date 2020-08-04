@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @MappedSuperclass
-public class Persona implements Serializable {
+public abstract class Persona {
 	
 	@Column(name="cedula")
 	private String cedula;
