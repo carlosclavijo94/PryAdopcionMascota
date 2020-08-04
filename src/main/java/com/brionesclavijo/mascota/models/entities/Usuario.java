@@ -1,40 +1,69 @@
 package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="usuarios")
-public class Usuario implements Serializable {
+public class Usuario extends Persona implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_usuario")
+	@Column(name = "pk_usuario")
 	private Integer idusuario;
 	
-	@Column(name="user")
-	private String user;
+	@Column(name="nombre", unique=true)
+	@NotEmpty
+	@Size(min=4)
+	private String nombre;
 	
-	@Column(name="pass")
-	private String pass;
+	@Column(name="password")
+	@NotEmpty
+	@Size(min=8)
+	private String password;
 	
+	@Column(name="habilitado")
+	private boolean habilitado;
+
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL )
+	@JoinColumn(name="fk_usuario")
+	private List<Rol> roles;
+			
+	public List<Rol> getRoles() {
+		if(roles == null)
+			roles = new ArrayList<>();
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+
 	public Usuario() {
 		super();
 	}
 	
-	public Usuario(Integer id) {
+	public Usuario(int id) {
 		super();
-		this.idusuario = id;
+		this.setIdusuario(id);
 	}
 
 	public Integer getIdusuario() {
@@ -45,25 +74,29 @@ public class Usuario implements Serializable {
 		this.idusuario = idusuario;
 	}
 
-	public String getUser() {
-		return user;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
+	} 
+	
+	public boolean getHabilitado() {
+		return this.habilitado;
 	}
 	
-	@Override
-	public String toString() {
-		return this.getUser();
+	public void setHabilitado(boolean h) {
+		this.habilitado = h;
 	}
-	
+		
+
 }

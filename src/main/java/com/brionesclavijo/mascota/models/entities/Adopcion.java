@@ -100,9 +100,9 @@ public class Adopcion implements Serializable {
 	private Mascota mascota;
 	
 	
-	@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
+	/*@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
 	@ManyToOne
-	private Persona persona;
+	private Persona persona;*/
 
 	public Mascota getMascota() {
 		return mascota;
@@ -112,13 +112,13 @@ public class Adopcion implements Serializable {
 		this.mascota = mascota;
 	}
 
-	public Persona getPersona() {
+	/*public Persona getPersona() {
 		return persona;
 	}
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
-	}
+	}*/
 
 	@Override
 	public String toString() {

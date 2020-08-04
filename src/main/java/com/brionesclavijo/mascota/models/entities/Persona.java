@@ -12,27 +12,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="personas")
+@MappedSuperclass
 public class Persona implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name="pk_persona")
-	private Integer idpersona;
 	
 	@Column(name="cedula")
 	private String cedula;
 	
-	@Column(name="nombre")
-	private String nombre;
+	@Column(name="nombres")
+	private String nombres;
 	
 	@Column(name="direccion")
 	private String direccion;
@@ -42,21 +34,6 @@ public class Persona implements Serializable {
 	
 	public Persona() {
 		super();
-		usuario=new Usuario();
-	}
-	
-	public Persona(Integer id) {
-		super();
-		this.idpersona = id;
-	}
-		
-	
-	public Integer getIdpersona() {
-		return idpersona;
-	}
-
-	public void setIdpersona(Integer idpersona) {
-		this.idpersona = idpersona;
 	}
 
 	public String getCedula() {
@@ -67,12 +44,12 @@ public class Persona implements Serializable {
 		this.cedula = cedula;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombres() {
+		return nombres;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public String getDireccion() {
@@ -90,39 +67,12 @@ public class Persona implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	//Relacion con la tabla
-	
-	@JoinColumn(name="usuario_id",unique=true)
-	@OneToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
-	
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	@OneToMany(mappedBy="persona", fetch=FetchType.LAZY) 
-	private List<Adopcion> lstadopcion;
-	
-	public List<Adopcion> getLstadopcion() {
-		return lstadopcion;
-	}
-
-	public void setLstadopcion(List<Adopcion> lstadopcion) {
-		this.lstadopcion = lstadopcion;
-	}
 
 	@Override
 	public String toString() {
-		return cedula+ " - " +nombre ;
+		return cedula+ " - " +nombres ;
 	}
 	
-	
-
 
 }
 
