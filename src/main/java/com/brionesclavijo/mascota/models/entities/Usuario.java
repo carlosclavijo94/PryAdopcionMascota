@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="usuarios")
-public class Usuario extends Persona implements Serializable {
+public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -39,6 +39,10 @@ public class Usuario extends Persona implements Serializable {
 	@NotEmpty
 	@Size(min=8)
 	private String password;
+	
+	@Column(name="cedula", unique=true)
+	@NotEmpty
+	private String cedula;
 	
 	@Column(name="habilitado")
 	private boolean habilitado;
@@ -97,6 +101,14 @@ public class Usuario extends Persona implements Serializable {
 	public void setHabilitado(boolean h) {
 		this.habilitado = h;
 	}
-		
 
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+		
+	
 }

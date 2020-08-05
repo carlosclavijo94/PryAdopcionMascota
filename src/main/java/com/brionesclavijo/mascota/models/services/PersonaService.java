@@ -2,28 +2,29 @@ package com.brionesclavijo.mascota.models.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.brionesclavijo.mascota.models.dao.ICliente;
-import com.brionesclavijo.mascota.models.entities.Cliente;
+import com.brionesclavijo.mascota.models.dao.IPersona;
+import com.brionesclavijo.mascota.models.entities.Persona;
 
 @Service
-public class ClienteService implements IClienteService {
+public class PersonaService implements IPersonaService {
 	
 	@Autowired 
-	private ICliente dao;
+	private IPersona dao;
 		
 	@Override
 	@Transactional
-	public void save(Cliente c) {
-		dao.save(c);		
+	public void save(Persona p) {
+		dao.save(p);		
 	}
 
 	@Override
 	@Transactional
-	public Cliente findById(Integer id) {		
+	public Persona findById(Integer id) {		
 		return dao.findById(id).get();
 	}
 
@@ -35,7 +36,7 @@ public class ClienteService implements IClienteService {
 
 	@Override
 	@Transactional
-	public List<Cliente> findAll() {		
-		return (List<Cliente>) dao.findAll();
+	public List<Persona> findAll() {		
+		return (List<Persona>) dao.findAll();
 	}
 }

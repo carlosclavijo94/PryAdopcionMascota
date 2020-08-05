@@ -1,10 +1,26 @@
 package com.brionesclavijo.mascota.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
-@MappedSuperclass
-public abstract class Persona {
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="personas")
+public class Persona implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name="pk_persona")
+	private Integer idpersona;
 	
 	@Column(name="cedula")
 	private String cedula;
@@ -35,6 +51,14 @@ public abstract class Persona {
 
 	public String getCedula() {
 		return cedula;
+	}
+	
+	public Integer getIdpersona() {
+		return idpersona;
+	}
+
+	public void setIdpersona(Integer idpersona) {
+		this.idpersona = idpersona;
 	}
 
 	public void setCedula(String cedula) {
@@ -69,7 +93,6 @@ public abstract class Persona {
 	public String toString() {
 		return cedula+ " - " +nombres ;
 	}
-	
 
 }
 

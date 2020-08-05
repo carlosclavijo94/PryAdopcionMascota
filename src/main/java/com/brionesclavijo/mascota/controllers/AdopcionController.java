@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brionesclavijo.mascota.models.entities.Adopcion;
-import com.brionesclavijo.mascota.models.entities.Cliente;
+import com.brionesclavijo.mascota.models.entities.Persona;
 import com.brionesclavijo.mascota.models.entities.Mascota;
 import com.brionesclavijo.mascota.models.services.IAdopcionService;
 import com.brionesclavijo.mascota.models.services.IMascotaService;
-import com.brionesclavijo.mascota.models.services.IClienteService;
+import com.brionesclavijo.mascota.models.services.IPersonaService;
 
 @Controller
 @RequestMapping(value="/adopcion")  
@@ -25,7 +25,7 @@ public class AdopcionController {
 	private IAdopcionService srvAdopcion;
 	
 	@Autowired 
-	private IClienteService srvCliente;
+	private IPersonaService srvPersona;
 	
 	@Autowired
 	private IMascotaService srvMascota;
@@ -36,8 +36,8 @@ public class AdopcionController {
 		
 		model.addAttribute("title", "Registro de nueva adopcion");
 		model.addAttribute("adopcion", adopcion); 		
-		List<Cliente> clientes = srvCliente.findAll();
-		model.addAttribute("clientes", clientes);
+		List<Persona> personas = srvPersona.findAll();
+		model.addAttribute("personas", personas);
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);
 		
@@ -57,8 +57,8 @@ public class AdopcionController {
 		model.addAttribute("adopcion", adopcion);
 		model.addAttribute("title", "Actualizando el registro de " + adopcion);
 		
-		List<Cliente> clientes = srvCliente.findAll();
-		model.addAttribute("clientes", clientes);
+		List<Persona> personas = srvPersona.findAll();
+		model.addAttribute("personas", personas);
 		
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);
@@ -87,4 +87,6 @@ public class AdopcionController {
 		return "redirect:/adopcion/list";
 	}
 }
+
+
 

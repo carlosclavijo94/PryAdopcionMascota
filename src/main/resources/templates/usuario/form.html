@@ -63,19 +63,7 @@
 														th:if="${#fields.hasErrors('cedula')}"
 														th:errors="*{cedula}"></small>
 												</div>
-												<div class="input-group mb-3">
-													<div class="input-group-prepend">
-														<span class="input-group-text"><i
-															class="fas fa-user-tie"></i></span>
-													</div>
-													<input type="text" class="form-control"
-														th:errorclass="'form-control is-invalid'"
-														th:field="*{nombres}" placeholder="Nombres" /> <small
-														class="invalid-feedback"
-														th:if="${#fields.hasErrors('nombres')}"
-														th:errors="*{nombres}"></small>
-												</div>
-												
+																								
 												<div class="btn-group">
 													<button type="submit" class="btn btn-success">
 														<i class="fas fa-save"></i> &nbsp;Guardar

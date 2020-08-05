@@ -20,22 +20,22 @@
 								<th>Nombre</th>
 								<th>Direci&oacute;n</th>
 								<th>Tel&eacute;fono</th>
-								<th>Usuario</th>
+								<th>Imagen</th>
 								<th><a class="btn btn-sm btn-success"
 									th:href="@{/persona/create}">&nbsp;Nuevo</a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="p : ${personas}">
-								<td th:text="${p.cedula}"></td>
-								<td th:text="${p.nombre}"></td>
-								<td th:text="${p.direccion}"></td>
-								<td th:text="${p.telefono}"></td>
-								<td th:text="${p.usuario.toString()}"></td>
+							<tr th:each="c : ${personas}">
+								<td th:text="${c.cedula}"></td>
+								<td th:text="${c.nombres}"></td>
+								<td th:text="${c.direccion}"></td>
+								<td th:text="${c.telefono}"></td>
+								<td th:text="${c.imagen}"></td>
 								<td><a class="btn btn-sm btn-warning"
-									th:href="@{/persona/update/} + ${p.idpersona}">&nbsp;Actualizar</a>
+									th:href="@{/persona/update/} + ${c.idpersona}">&nbsp;Actualizar</a>
 									<a class="btn btn-sm btn-info"
-									th:href="@{/persona/retrieve/} + ${p.idpersona}">&nbsp;Consultar</a>
+									th:href="@{/persona/retrieve/} + ${c.idpersona}">&nbsp;Consultar</a>
 								</td>
 							</tr>
 						</tbody>

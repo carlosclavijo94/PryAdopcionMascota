@@ -23,31 +23,35 @@
 											<div class="text-center">
 												<h1 th:text="${persona}" class="h4 text-gray-900 mb-4"></h1>
 											</div>
+											<div class=col-2>
+											<img th:src="@{/photos/} + ${persona.imagen}" width="80"
+												height="80" />
+											</div>
 											<hr>
 											<div class="form-group row">
 												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Cedula</h6>
+												<h6>C&eacute;dula</h6>
 													<label class="form-control form-control-user"
 														th:text="${persona.cedula}"></label>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Nombre</h6>
+												<h6>Nombres</h6>
 													<label class="form-control form-control-user"
-														th:text="${persona.nombre}"></label>
+														th:text="${persona.nombres}"></label>
 												</div>
 											</div>	
 											<div class="form-group row">
 												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Direccion</h6>
+												<h6>Direcci&oacute;n</h6>
 													<label class="form-control form-control-user"
 														th:text="${persona.direccion}"></label>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Telefono</h6>
+												<h6>Tel&eacute;fono</h6>
 													<label class="form-control form-control-user"
 														th:text="${persona.telefono}"></label>
 												</div>
