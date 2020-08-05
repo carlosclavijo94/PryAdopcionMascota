@@ -44,6 +44,9 @@ public class Mascota implements Serializable {
 	@Column(name="raza")	
 	private String raza;
 	
+	@Column(name="imagen")	
+	private String imagen;
+	
 	public Mascota() {
 		super();
 	}
@@ -101,8 +104,18 @@ public class Mascota implements Serializable {
 		this.tipoMascota = tipoMascota;
 	}
 	
+	
 	//Relaciones entre tablas
 	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY) 
 	private List<CarnetVacunacion> lstcarnet;
 	

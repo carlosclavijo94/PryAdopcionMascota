@@ -21,6 +21,7 @@
 								<th>Color</th>
 								<th>Tipo Mascota</th>
 								<th>Raza</th>
+								<th>Imagen</th>
 								<th><a class="btn btn-sm btn-success"
 									th:href="@{/mascota/create}">&nbsp;Nuevo</a></th>
 							</tr>
@@ -32,6 +33,7 @@
 								<td th:text="${m.color}"></td>
 								<td th:text="${m.tipoMascota}"></td>
 								<td th:text="${m.raza}"></td>
+								<td th:text="${m.imagen}"></td>
 								<td><a class="btn btn-sm btn-warning"
 									th:href="@{/mascota/update/} + ${m.idmascota}">&nbsp;Actualizar</a>
 									<a class="btn btn-sm btn-info"

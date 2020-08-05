@@ -1,16 +1,27 @@
 package com.brionesclavijo.mascota.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.brionesclavijo.mascota.models.entities.Mascota;
+import com.brionesclavijo.mascota.models.entities.Persona;
 import com.brionesclavijo.mascota.models.services.IMascotaService;
 
 @Controller
@@ -60,8 +71,45 @@ public class MascotaController {
 	
 	
 	@PostMapping(value="/save") 
-	public String save(Mascota mascota, Model model) {
-		srvMascota.save(mascota);
+	public String save(@Validated Mascota mascota, BindingResult result, Model model,
+			@RequestParam("photo") MultipartFile image,
+			SessionStatus status, RedirectAttributes flash) {
+		try {
+			
+			String message = "Mascota agregado correctamente";
+			String titulo = "Nuevo registro de mascota";
+			
+			if(mascota.getIdmascota() != null) {
+				message = "Mascota actualizado correctamente";
+				titulo = "Actualizando el registro de " + mascota;
+			}
+						
+			if(result.hasErrors()) {
+				model.addAttribute("title", titulo);							
+				return "mascota/form";				
+			}
+			
+			if (!image.isEmpty()) {				
+				Path dir = Paths.get("src//main//resources//static//photos");
+				String rootPath = dir.toFile().getAbsolutePath();
+				try {
+					byte[] bytes = image.getBytes();
+					Path rutaCompleta = Paths.get(rootPath + "//" + image.getOriginalFilename());
+					Files.write(rutaCompleta, bytes);
+					mascota.setImagen(image.getOriginalFilename());
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}													
+			srvMascota.save(mascota);	
+			status.setComplete();
+			flash.addFlashAttribute("success", message);
+		}
+		catch(Exception ex) {
+			flash.addFlashAttribute("error", ex.getMessage());
+			return "mascota/form";
+		}				
 		return "redirect:/mascota/list";
 	}
 }

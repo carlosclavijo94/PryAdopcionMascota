@@ -6,10 +6,13 @@
 	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
 
 	<div id="wrapper">
+		<div class="container-fluid">
 
-		<div class="contact">
-			<div class="container">
-				<h3 class="agileits-title" th:text="${title}"></h3>
+					<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+			</div>
 
 				<div class="contact-agileinfo">
 					<div class="col-md-7 contact-right">
@@ -17,10 +20,10 @@
 						<form th:action="@{/carnet/save}" th:object="${carnet}" method="post">
 						<div class="form-group row">
 							<h6>Fecha Vacunaci&oacute;n: </h6>
-							<input type="date" th:field="*{fechaVacunacion}">
+							<input type="date" th:field="*{fechaVacunacion}"/>
 							</div>
 							<div class="form-group row">
-							<input type="text" th:field="*{observacion}" placeholder="Observaci&oacute;n">
+							<input type="text" th:field="*{observacion}" placeholder="Observaci&oacute;n"/>
 							</div>
 							<h6>Mascotas: </h6>
 							<div class="form-group row ">
@@ -68,12 +71,7 @@
 			</div>
 		</div>
 
-	</div>
-
 	<footer th:replace="layout :: frgFooter"></footer>
-
-
-
 
 </body>
 </html>

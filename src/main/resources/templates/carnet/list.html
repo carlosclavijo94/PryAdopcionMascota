@@ -6,17 +6,16 @@
 	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
 
 	<div id="wrapper">
-
-		<div class="contact">
-			
-			<!-- Begin Page Content -->
-				<div class="container-fluid">
+		<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
-					</div>					
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+			</div>
+
+				<div class="contact-agileinfo">
+					<div class="col-md-7 contact-right">					
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -51,8 +50,8 @@
 				<!-- /.container-fluid -->
 			
 		</div>
-
 	</div>
+</div>
 
 	<footer th:replace="layout :: frgFooter"></footer>
 
