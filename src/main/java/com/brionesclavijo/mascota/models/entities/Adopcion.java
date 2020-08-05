@@ -1,4 +1,5 @@
 package com.brionesclavijo.mascota.models.entities;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,7 +18,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="adopcion")
+@Table(name="adopciones")
 public class Adopcion implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -99,10 +100,9 @@ public class Adopcion implements Serializable {
 	@ManyToOne
 	private Mascota mascota;
 	
-	
-	/*@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
+	@JoinColumn(name="fk_cliente", referencedColumnName="pk_cliente")
 	@ManyToOne
-	private Persona persona;*/
+	private Cliente persona;
 
 	public Mascota getMascota() {
 		return mascota;
@@ -112,13 +112,13 @@ public class Adopcion implements Serializable {
 		this.mascota = mascota;
 	}
 
-	/*public Persona getPersona() {
+	public Cliente getPersona() {
 		return persona;
 	}
 
-	public void setPersona(Persona persona) {
+	public void setPersona(Cliente persona) {
 		this.persona = persona;
-	}*/
+	}
 
 	@Override
 	public String toString() {

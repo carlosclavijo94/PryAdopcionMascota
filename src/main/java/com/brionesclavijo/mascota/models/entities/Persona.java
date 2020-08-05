@@ -1,21 +1,7 @@
 package com.brionesclavijo.mascota.models.entities;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @MappedSuperclass
 public abstract class Persona {
@@ -32,8 +18,19 @@ public abstract class Persona {
 	@Column(name="telefono")
 	private String telefono;
 	
+	@Column(name = "imagen")
+	private String imagen;
+	
 	public Persona() {
 		super();
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public String getCedula() {
