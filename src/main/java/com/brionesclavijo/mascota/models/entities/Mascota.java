@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity  
 @Table(name="mascotas")
 public class Mascota implements Serializable {
@@ -114,9 +116,9 @@ public class Mascota implements Serializable {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-
-
-	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY) 
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY)
 	private List<CarnetVacunacion> lstcarnet;
 	
 	

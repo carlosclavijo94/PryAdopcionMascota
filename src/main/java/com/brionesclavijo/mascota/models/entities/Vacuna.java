@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity  
 @Table(name="vacunas")
 public class Vacuna implements Serializable {
@@ -66,7 +68,7 @@ public class Vacuna implements Serializable {
 	
 	//Relaciones entre tablas
 	
-
+	@JsonIgnore
 	@OneToMany(mappedBy="vacuna", fetch=FetchType.LAZY) 
 	private List<CarnetVacunacion> lstcarnet;
 	
