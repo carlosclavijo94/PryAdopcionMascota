@@ -10,6 +10,7 @@
 <!-- Custom Theme files -->
 <link th:href="@{/css/bootstrap.css}" type="text/css" rel="stylesheet"
 	media="all">
+
 <link th:href="@{/css/easy-responsive-tabs.css}" rel='stylesheet'
 	type='text/css' />
 <!-- easy-responsive-tabs -->
@@ -98,7 +99,7 @@
 								<li><a th:href="@{/adopcion/create}">Adopción</a></li>
 								<li><a th:href="@{/persona/create}">Persona</a></li>
 								<li><a th:href="@{/carnet/create}">Carnet</a></li>
-								<li><a th:href="@{/mascota/create}">Mascota</a></li>
+								<li><a th:href="@{/mascota/}">Mascota</a></li>
 								<li><a href="contact.html">Contacto</a></li>
 							</ul>
 						</div>
@@ -155,6 +156,8 @@
 
 	<!-- Footer -->
 	<footer th:fragment="frgFooter">
+	
+	
 		<!-- w3-agilesale -->
 		<div class="w3-agilesale welcome">
 			<div class="container">
@@ -184,6 +187,7 @@
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script th:src="@{/js/bootstrap.js}"></script>
+	
 
 </body>
 </html>

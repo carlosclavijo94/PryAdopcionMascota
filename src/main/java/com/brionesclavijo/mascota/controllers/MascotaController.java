@@ -20,9 +20,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.Mascota;
-import com.brionesclavijo.mascota.models.entities.Persona;
 import com.brionesclavijo.mascota.models.services.IMascotaService;
+import com.brionesclavijo.mascota.models.services.ICarnetVacunacionService;
 
 @Controller
 @RequestMapping(value="/mascota")  
@@ -30,8 +31,10 @@ public class MascotaController {
 	@Autowired 
 	private IMascotaService srvMascota;
 	
+	@Autowired 
+	private ICarnetVacunacionService srvCarnets;
 	
-	
+
 	@GetMapping(value="/create") //https://localhost:8084/mascota/create
 	public String create(Model model) {
 		Mascota mascota = new Mascota();
@@ -43,7 +46,12 @@ public class MascotaController {
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		Mascota mascota = srvMascota.findById(id);
-		model.addAttribute("mascota", mascota);				
+		model.addAttribute("mascota", mascota);
+		
+		List<CarnetVacunacion> carnets= this.srvCarnets.findByMascota(mascota);
+		model.addAttribute("carnets", carnets);
+		     
+		
 		return "mascota/card";
 	}
 	

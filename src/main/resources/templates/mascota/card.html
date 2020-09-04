@@ -6,57 +6,145 @@
 	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
 
 	<div id="wrapper">
-			<div id="content">
+		<div id="content">
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<div class="container">
+				<!-- Page Heading -->
+				<div class="container">
 
-						<div class="card o-hidden border-0 shadow-lg my-5">
-							<div class="card-body p-0">
-								<!-- Nested Row within Card Body -->
-								<div class="row">
-									<div class="col-lg-7">
-										<div class="p-5">
-											<div class="text-center">
-												<h1 th:text="${mascota}" class="h4 text-gray-900 mb-4"></h1>
-											</div>
-												<div class=col-2>
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
+								<div class="col-lg-7">
+									<div class="p-5">
+										<div class="text-center">
+											<h1 th:text="${mascota}" class="h4 text-gray-900 mb-4"></h1>
+										</div>
+										<div class=col-2>
 											<img th:src="@{/photos/} + ${mascota.imagen}" width="80"
 												height="80" />
-											</div>
-											<hr>
-											<hr>
-											<div class="form-group row">
-												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Nombre</h6>
-													<label class="form-control form-control-user"
-													
-														th:text="${mascota.nombre}"></label>
+										</div>
+										<hr>
+										<hr>
+
+
+
+
+										<div class="container">
+
+											<div class="row">
+												<div class="col">
+													<ul class="nav nav-tabs mt-5" id="myTabs">
+														<li class="nav-item"><a href="#tab1" data-url="/tab1"
+															class="nav-link active">MASCOTAS</a></li>
+														<li class="nav-item"><a href="#tab2" data-url="/tab2"
+															class="nav-link">VACUNAS</a></li>
+
+													</ul>
+
+													<div class="tab-content pt-3">
+														<div class="tab-pane active" id="tab1">
+
+															<div class="form-group row">
+																<div class="col-sm-12 mb-3 mb-sm-0">
+																	<h6>Nombre</h6>
+																	<label class="form-control form-control-user"
+																		th:text="${mascota.nombre}"></label>
+																</div>
+															</div>
+															<div class="form-group row">
+																<div class="col-sm-12 mb-3 mb-sm-0">
+																	<h6>Edad</h6>
+																	<label class="form-control form-control-user"
+																		th:text="${mascota.edad}"></label>
+																</div>
+															</div>
+
+														</div>
+														<div class="tab-pane" id="tab2">
+														
+																<button class="button button-isi"><span>Nuevo
+																			</span><i class="icon glyphicon"></i></button>
+																			
+
+															<table class="table table-bordered">
+
+
+																<thead>
+																	<tr>
+																		<th>Vacuna</th>
+																		<th>Descripcion</th>
+																		<th>Costo</th>
+
+																	</tr>
+																	
+																	
+																																	
+																<tr id="frmAddCarnet" class="invisible">
+																
+																<th colspan="3"> 
+																	<form id="frmCarnet">
+																
+																
+																	</form>
+																</th>
+																</tr>
+																	
+																	
+																</thead>
+																
+																
+
+																
+																
+																
+
+																<tbody>
+																
+																	<tr th:each="c : ${carnets}">																
+																		<td th:text="${c.vacuna.nombre}"></td>
+																		<td th:text="${c.vacuna.observacion}"></td>
+																		<td th:text="${c.observacion}"></td>
+																	</tr>
+
+																</tbody>
+
+
+															</table>
+															
+															
+															
+															
+															
+															
+															
+
+														</div>
+
+
+													</div>
 												</div>
 											</div>
-											<div class="form-group row">
-												<div class="col-sm-12 mb-3 mb-sm-0">
-												<h6>Edad</h6>
-													<label class="form-control form-control-user"
-														th:text="${mascota.edad}"></label>
-												</div>
-											</div>	
-											
-											<hr>											
-											<h5 class="modal-title">Desea eliminar el registro?</h5>
-											<div class="form-group row">
-												<div class="col-sm-6 mb-3 mb-sm-0">													
-													<a th:href="@{/mascota/delete/} + ${mascota.idmascota}"
-																class="btn btn-success btn-user btn-block">Confirmar</a>
-												</div>
-												<div class="col-sm-6 mb-3 mb-sm-0">
-													<a th:href="@{/mascota/list}"
-														class="btn btn-danger btn-user btn-block">Cancelar</a>
-												</div>
-											</div>											
+
+										</div>
+
+
+
+
+										<hr>
+										<h5 class="modal-title">Desea eliminar el registro?</h5>
+										<div class="form-group row">
+											<div class="col-sm-6 mb-3 mb-sm-0">
+												<a th:href="@{/mascota/delete/} + ${mascota.idmascota}"
+													class="btn btn-success btn-user btn-block">Confirmar</a>
+											</div>
+											<div class="col-sm-6 mb-3 mb-sm-0">
+												<a th:href="@{/mascota/list}"
+													class="btn btn-danger btn-user btn-block">Cancelar</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -65,12 +153,34 @@
 					</div>
 				</div>
 			</div>
-		
+		</div>
+
 	</div>
-	
+
 	<footer th:replace="layout :: frgFooter"></footer>
 
 
+	<script th:src="@{/css/bootstrap.min.js}"></script>
+
+	<script>
+		$('#myTabs a').click(function(e) {
+			e.preventDefault();
+
+			var url = $(this).attr("data-url");
+			var href = this.hash;
+			var pane = $(this);
+
+			// ajax load from data-url
+			$(href).load(url, function(result) {
+				pane.tab('show');
+			});
+		});
+
+		// load first tab content
+		$('#tab1').load($('.nav-link.active').attr("data-url"),
+				function(result) {
+				});
+	</script>
 
 
 </body>

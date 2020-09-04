@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.brionesclavijo.mascota.models.dao.ICarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
+import com.brionesclavijo.mascota.models.entities.Mascota;
+
+import ch.qos.logback.classic.Logger;
 
 @Service
 public class CarnetVacunacionService implements ICarnetVacunacionService {
@@ -39,4 +42,20 @@ public class CarnetVacunacionService implements ICarnetVacunacionService {
 	public List<CarnetVacunacion> findAll() {		
 		return (List<CarnetVacunacion>) dao.findAll();
 	}
+	
+	@Override
+	@Transactional
+	public List<CarnetVacunacion> findByMascota(Mascota m) {	
+		try {
+		List<CarnetVacunacion> resultado=dao.findByMascota(m.getIdmascota());
+		return resultado;
+		}
+		catch(Exception ex){
+			System.out.println("error->"+ex.getMessage());
+			return null;
+		}
+
+	}
+	
+	
 }
