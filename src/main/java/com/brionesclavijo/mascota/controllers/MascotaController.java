@@ -22,7 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.Mascota;
+import com.brionesclavijo.mascota.models.entities.Vacuna;
 import com.brionesclavijo.mascota.models.services.IMascotaService;
+import com.brionesclavijo.mascota.models.services.IVacunaService;
 import com.brionesclavijo.mascota.models.services.ICarnetVacunacionService;
 
 @Controller
@@ -33,6 +35,9 @@ public class MascotaController {
 	
 	@Autowired 
 	private ICarnetVacunacionService srvCarnets;
+	
+	@Autowired 
+	private IVacunaService srvVacuna;
 	
 
 	@GetMapping(value="/create") //https://localhost:8084/mascota/create
@@ -50,6 +55,13 @@ public class MascotaController {
 		
 		List<CarnetVacunacion> carnets= this.srvCarnets.findByMascota(mascota);
 		model.addAttribute("carnets", carnets);
+		
+		
+		List<Vacuna> vacunas = this.srvVacuna.findAll();
+		model.addAttribute("vacunas", vacunas);
+		
+		CarnetVacunacion carnet = new CarnetVacunacion();
+		model.addAttribute("carnet", carnet);
 		     
 		
 		return "mascota/card";
@@ -120,4 +132,20 @@ public class MascotaController {
 		}				
 		return "redirect:/mascota/list";
 	}
+	
+	
+	@PostMapping(value="/save_") 
+	public String save(CarnetVacunacion carnetVacunacion, Model model) {
+		srvCarnets.save(carnetVacunacion);
+		int id = carnetVacunacion.getMascota().getIdmascota();
+		String url="redirect:/mascota/retrieve/"+id;
+		
+		return url;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -36,9 +36,11 @@ public class CarnetVacunacionController {
 	public String create(Model model) {
 		CarnetVacunacion carnet = new CarnetVacunacion();
 		model.addAttribute("title", "Registro de nuevo Carnet de Vacunación");
-		model.addAttribute("carnet", carnet);		
+		model.addAttribute("carnet", carnet);	
+		
 		List<Vacuna> vacunas = srvVacuna.findAll();
 		model.addAttribute("vacunas", vacunas);
+		
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);
 		return "carnet/form";
