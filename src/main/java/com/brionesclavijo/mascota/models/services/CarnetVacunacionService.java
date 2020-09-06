@@ -1,7 +1,12 @@
 package com.brionesclavijo.mascota.models.services;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.brionesclavijo.mascota.models.dao.ICarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.Mascota;
+import com.brionesclavijo.mascota.models.reporting.rptVacunasPorMascotas;
 
 import ch.qos.logback.classic.Logger;
 
@@ -18,6 +24,9 @@ public class CarnetVacunacionService implements ICarnetVacunacionService {
 	
 	@Autowired 
 	private ICarnetVacunacion dao;
+	
+	@PersistenceContext
+	private EntityManager em;
 		
 	@Override
 	@Transactional
@@ -57,5 +66,14 @@ public class CarnetVacunacionService implements ICarnetVacunacionService {
 
 	}
 	
+	@Override
+	public List<rptVacunasPorMascotas> _rptVacunasPorMascotas() {		
+		StoredProcedureQuery query = em.createStoredProcedureQuery("vacunas_por_mascotas");
+		query.execute();
+		List<Object[]> datos = query.getResultList();		
+		return datos.stream()
+				.map(r -> new rptVacunasPorMascotas((String)r[0], (BigInteger)r[1], (Double)r[2]))
+				.collect(Collectors.toList());		
+	}
 	
 }

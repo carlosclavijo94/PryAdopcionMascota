@@ -18,13 +18,11 @@
 					<div class="col-md-7 contact-right">
 					
 						<form th:action="@{/carnet/save}" th:object="${carnet}" method="post">
-						<div class="form-group row">
-							<h6>Fecha Vacunaci&oacute;n: </h6>
-							<input type="date" th:field="*{fechaVacunacion}"/>
-							</div>
+						
 							<div class="form-group row">
-							<input type="text" th:field="*{observacion}" placeholder="Observaci&oacute;n"/>
+								<input type="number" th:field="*{costo}" placeholder="Costo"/>
 							</div>
+							
 							<h6>Mascotas: </h6>
 							<div class="form-group row ">
 								<select class="form-control" th:field=*{mascota.idmascota}>

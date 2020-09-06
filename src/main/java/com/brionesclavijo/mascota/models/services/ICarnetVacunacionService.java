@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.Mascota;
+import com.brionesclavijo.mascota.models.reporting.rptVacunasPorMascotas;
 
 public interface ICarnetVacunacionService {
 	public void save(CarnetVacunacion c);
@@ -11,4 +12,5 @@ public interface ICarnetVacunacionService {
 	public void delete(Integer id);
 	public List<CarnetVacunacion> findAll();
 	public List<CarnetVacunacion> findByMascota(Mascota m);
+	public List<rptVacunasPorMascotas> _rptVacunasPorMascotas();
 }

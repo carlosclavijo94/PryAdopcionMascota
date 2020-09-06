@@ -2,6 +2,7 @@ package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
@@ -13,12 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Entity  
 @Table(name="carnet_vacunacion")
@@ -33,29 +36,25 @@ public class CarnetVacunacion implements Serializable {
 	private Integer idcarnetVacunacion;
 	
 	@Column(name="fecha_vacunacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
-	private Calendar fechaVacunacion;
+	private LocalDateTime fechaVacunacion;
 	
-	@Column(name="observacion")	
-	private String observacion;
+	@Column(name="costo")	
+	private Float costo;
 	
-	
-	
-	public Calendar getFechaVacunacion() {
+	public LocalDateTime getFechaVacunacion() {
 		return fechaVacunacion;
 	}
 
-	public void setFechaVacunacion(Calendar fechaVacunacion) {
+	public void setFechaVacunacion(LocalDateTime fechaVacunacion) {
 		this.fechaVacunacion = fechaVacunacion;
 	}
 
-	public String getObservacion() {
-		return observacion;
+	public Float getCosto() {
+		return costo;
 	}
 
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
+	public void setCosto(Float costo) {
+		this.costo = costo;
 	}
 
 	public CarnetVacunacion() {
@@ -103,8 +102,8 @@ public class CarnetVacunacion implements Serializable {
 	
 	
 	public String fechaVacuna() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
-		return sdf.format(fechaVacunacion.getTime());
+			
+		return (fechaVacunacion.getYear()+"/"+fechaVacunacion.getMonthValue()+"/"+fechaVacunacion.getDayOfMonth());
 	}
 
 	@Override
@@ -112,6 +111,11 @@ public class CarnetVacunacion implements Serializable {
 		return vacuna.getNombre();
 	}
 	
-	
+	@PrePersist
+	public void prePersist() {
+		this.fechaVacunacion = LocalDateTime.now();
+		//SecurityContext context = SecurityContextHolder.getContext();
+        //creadoPor = context.getAuthentication().getName();
+	}
 	
 }

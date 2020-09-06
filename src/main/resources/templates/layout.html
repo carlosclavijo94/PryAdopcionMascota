@@ -32,6 +32,9 @@
 	href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>	
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+<script th:src="@{/js/layout-util.js}"></script>
+<script th:src="@{/js/active.js}"></script>
 <!-- //web-fonts -->
 </head>
 
@@ -98,8 +101,9 @@
 								<li><a href="gallery.html">Galería</a></li>
 								<li><a th:href="@{/adopcion/create}">Adopción</a></li>
 								<li><a th:href="@{/persona/create}">Persona</a></li>
-								
 								<li><a th:href="@{/mascota/}">Mascota</a></li>
+								<li><a th:href="@{/carnet/rptVacunasPorMascotas}">Reporte</a></li>
+								
 								<li><a href="contact.html">Contacto</a></li>
 							</ul>
 						</div>
@@ -183,6 +187,7 @@
 	<!-- text-effect -->
 	<script th:type="text/javascript" src="js/jquery.transit.js"></script>
 	<script th:type="text/javascript" src="js/jquery.textFx.js"></script>
+	
 
 
 	<!-- Placed at the end of the document so the pages load faster -->
