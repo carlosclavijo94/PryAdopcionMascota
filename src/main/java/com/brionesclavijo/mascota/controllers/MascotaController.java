@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.brionesclavijo.mascota.models.entities.CarnetVacunacion;
 import com.brionesclavijo.mascota.models.entities.Mascota;
 import com.brionesclavijo.mascota.models.entities.Vacuna;
+import com.brionesclavijo.mascota.models.reporting.rptMascotasPorEdades;
 import com.brionesclavijo.mascota.models.services.IMascotaService;
 import com.brionesclavijo.mascota.models.services.IVacunaService;
 import com.brionesclavijo.mascota.models.services.ICarnetVacunacionService;
@@ -143,9 +145,23 @@ public class MascotaController {
 		return url;
 	}
 	
+	@GetMapping(value = "/rptMascotasPorEdades")
+	public String rptMascotasPorEdades(Model model) {	
+		return "mascota/rptMascotasPorEdades";			
+	}
 	
+	@GetMapping(value = "/dataRptMascotasPorEdades", produces="application/json")
+	public @ResponseBody List<rptMascotasPorEdades> datarptMascotasPorEdades(Model model) {				
+		try {			
+			return this.srvMascota._rptMascotasPorEdades();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
+	}
 	
-	
+
+
 	
 	
 }

@@ -13,4 +13,6 @@ public interface ICarnetVacunacionService {
 	public List<CarnetVacunacion> findAll();
 	public List<CarnetVacunacion> findByMascota(Mascota m);
 	public List<rptVacunasPorMascotas> _rptVacunasPorMascotas();
+	
+	
 }
