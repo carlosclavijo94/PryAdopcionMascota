@@ -70,7 +70,12 @@ $(document).ready(function(){
 
 
 
-
+/*
+ nombre: mascotas_edades
+procedure: 
+SELECT mascotas.nombre,mascotas.tipo_mascota,mascotas.edad FROM mascotas
+ORDER BY mascotas.edad
+ */
 
 
 

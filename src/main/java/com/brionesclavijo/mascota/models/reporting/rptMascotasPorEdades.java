@@ -1,7 +1,6 @@
 package com.brionesclavijo.mascota.models.reporting;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 
 public class rptMascotasPorEdades implements Serializable{
 	
