@@ -2,6 +2,7 @@ package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,11 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Entity
 @Table(name="adopciones")
@@ -30,20 +36,21 @@ public class Adopcion implements Serializable {
 	private Integer idadopcion;
 	
 	@Column(name="fecha_publicacion")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
-	private Calendar fechaPublicacion;
+	private LocalDateTime fechaPublicacion;
 	
 	@Column(name="fecha_asignacion")	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")	
-	private Calendar fechaAsignacion;
+	private LocalDateTime fechaAsignacion;
 	
 	@Column(name="estado")
 	private String estado;
 	
 	@Column(name="observacion")
 	private String observacion;
+	
+	@Column(name="us_asignado")
+	private String us_asignado;
+	
+	
 	
 	public Adopcion() {
 		super();
@@ -62,19 +69,19 @@ public class Adopcion implements Serializable {
 		this.idadopcion = idadopcion;
 	}
 
-	public Calendar getFechaPublicacion() {
+	public LocalDateTime getFechaPublicacion() {
 		return fechaPublicacion;
 	}
 
-	public void setFechaPublicacion(Calendar fechaPublicacion) {
+	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public Calendar getFechaAsignacion() {
+	public LocalDateTime getFechaAsignacion() {
 		return fechaAsignacion;
 	}
 
-	public void setFechaAsignacion(Calendar fechaAsignacion) {
+	public void setFechaAsignacion(LocalDateTime fechaAsignacion) {
 		this.fechaAsignacion = fechaAsignacion;
 	}
 
@@ -94,15 +101,24 @@ public class Adopcion implements Serializable {
 		this.observacion = observacion;
 	}
 	
-	//Realacion de tablas
 	
+	public String getUs_asignado() {
+		return us_asignado;
+	}
+
+	public void setUs_asignado(String us_asignado) {
+		this.us_asignado = us_asignado;
+	}
+
+
+	//Realacion de tablas
 	@JoinColumn(name="fk_mascota", referencedColumnName="pk_mascota")
 	@ManyToOne
 	private Mascota mascota;
 	
-	@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
+	/*@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
 	@ManyToOne
-	private Persona persona;
+	private Persona persona;*/
 
 	public Mascota getMascota() {
 		return mascota;
@@ -111,16 +127,14 @@ public class Adopcion implements Serializable {
 	public void setMascota(Mascota mascota) {
 		this.mascota = mascota;
 	}
-
-	
-
+	/*
 	public Persona getPersona() {
 		return persona;
 	}
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
-	}
+	}*/
 
 	@Override
 	public String toString() {
@@ -128,12 +142,31 @@ public class Adopcion implements Serializable {
 	}
 	
 	public String fechaPublic() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
-		return sdf.format(fechaPublicacion.getTime());
+		if(fechaPublicacion==null) {
+			return " ";
+		}else {
+		return (fechaPublicacion.getYear()+"/"+fechaPublicacion.getMonthValue()+"/"+fechaPublicacion.getDayOfMonth());
+		}
 	}
-	public String fechaAsignacion() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
-		return sdf.format(fechaAsignacion.getTime());
+	public String fechaAsignac() {
+		if(fechaAsignacion==null) {
+			return " ";
+		}else {
+			return (fechaAsignacion.getYear()+"/"+fechaAsignacion.getMonthValue()+"/"+fechaAsignacion.getDayOfMonth());
+		}
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		fechaPublicacion = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		fechaAsignacion = LocalDateTime.now();
+		SecurityContext context = SecurityContextHolder.getContext();
+        us_asignado = context.getAuthentication().getName();
+        this.estado="RESERVADO";
 	}
 
 }

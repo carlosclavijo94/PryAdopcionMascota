@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+			<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>					
+					
+				<table class="table table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ad : ${adopciones}">
+								<td>
+									<img th:src="@{/photos/} + ${ad.mascota.imagen}" width="240"
+									height="240" />
+									<a class="btn btn-sm btn-info"
+									th:href="@{/adopcion/adoptar/} + ${ad.idadopcion}">&nbsp;Adoptar</a>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				<!-- /.container-fluid -->
+						
+		</div>
+		</div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+
+</body>
+</html>

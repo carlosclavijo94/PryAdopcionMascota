@@ -17,46 +17,56 @@
 
 				<div class="contact-agileinfo">
 					<div class="col-md-7 contact-right">
-					
+							
 						<form th:action="@{/adopcion/save}" th:object="${adopcion}" method="post">
+							<div class=col-2>
+								<img th:src="@{/photos/} + ${adopcion.mascota.imagen}" width="80"
+									height="80" />
+							</div>
+							<hr>
+							
 							<div class="form-group row">
-								<div class="col-sm-6 mb-3 mb-sm-0">
-									<label class="radio-inline"><input type="radio"
-										th:field="*{estado}" value="DISPONIBLE" checked />&nbsp;Disponible</label>
-								</div>
-								<div class="col-sm-6">
-									<label class="radio-inline"><input type="radio"
-										th:field="*{estado}" value="RESERVADO" />&nbsp;Reservado</label>
+								<div class="col-sm-12 mb-3 mb-sm-0">
+									<h3>Nombre</h3>
+									<label class="form-control form-control-user"
+										th:text="${adopcion.mascota.nombre}"></label>
 								</div>
 							</div>
+							<div class="form-group row">
+								<div class="col-sm-12 mb-3 mb-sm-0">
+									<h3>Edad</h3>
+									<label class="form-control form-control-user"
+										th:text="${adopcion.mascota.edad}"></label>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12 mb-3 mb-sm-0">
+									<h3>Fecha Publicaci&oacute;n</h3>
+									<label class="form-control form-control-user"
+										th:text="${adopcion.fechaPublic()}"></label>
+								</div>
+							</div>									
+							
+							<h6>Observaci&oacute;n: </h6>
 							<div class="form-group row">
 							<input type="text" th:field="*{observacion}" placeholder="Observaci&oacute;n"/>
 							</div>
 							
-							<h6>Seleccione la mascota: </h6>
-							<div class="form-group row ">
-								<select class="form-control" th:field=*{mascota.idmascota}>
-									<option value=0>
-									<option th:each="m : ${mascotas}"
-										th:value= "${m.idmascota}" th:text="${m.toString()}">
-									</option>
-								</select>
-							</div>
 							<hr>
 							
 							<div class="form-group col-sm-4">
 								
 								<input type="submit"
 								class="btn btn-success btn-user btn-block"
-								value="Guardar" />
+								value="Adoptar" />
 										
 								<a  th:href="@{/adopcion/list}"
 								class="btn btn-danger btn-user btn-block"
 							    >Cancelar</a>
 							   
 							</div>
+								<input type="hidden" th:field="*{idadopcion}" />
 							
-							<input type="hidden" th:field="*{idadopcion}" />
 						</form>
 						
 					</div>
