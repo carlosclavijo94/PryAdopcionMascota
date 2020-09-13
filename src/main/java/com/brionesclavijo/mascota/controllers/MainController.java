@@ -34,6 +34,20 @@ public class MainController {
 		}				
 		return "login";
 	}
+	
+	@GetMapping(value= "/about")
+
+	public String about(Model model) {
+
+		return "about";
+	}
+	
+	@GetMapping(value= "/contact")
+
+	public String contact(Model model) {
+
+		return "contact";
+	}
 
 
 }
