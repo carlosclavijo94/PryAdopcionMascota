@@ -34,7 +34,7 @@ public class PersonaController {
 	@GetMapping(value="/create") //https://localhost:8084/persona/create
 	public String create(Model model) {
 		Persona persona = new Persona();
-		model.addAttribute("title", "Registro de nuevo persona");
+		model.addAttribute("title", "Registro de nueva persona");
 		model.addAttribute("persona", persona); 
 		return "persona/form";
 	}

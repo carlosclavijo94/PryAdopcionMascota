@@ -144,7 +144,7 @@ public class Mascota implements Serializable {
 
 	@Override
 	public String toString() {
-		return this.getNombre()+" "+ this.getTipoMascota();
+		return this.getNombre()+" - "+ this.getTipoMascota();
 	}	
 
 }

@@ -46,7 +46,16 @@ function report(){
 						title: {
 							display: true,
 							text: 'Vacunas realizadas por mascotas'
-						}
+						},
+						
+				        scales: {
+				            yAxes: [{
+				                ticks: {
+				                    beginAtZero: true
+				                }
+				            }]
+				        }
+						
 					}
 				});	
 				};

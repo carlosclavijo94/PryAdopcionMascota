@@ -20,12 +20,12 @@ function report(){
 			var barChartData = {
 				labels: _mes,
 				datasets: [{
-					label: 'Perros',
+					label: 'Vacunas a Perros',
 					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
 					borderWidth: 1,
 					data: _perro
 				}, {
-					label: 'Gatos',
+					label: 'Vacunas a Gatos',
 					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
 					borderWidth: 1,
 					data: _gato
@@ -46,7 +46,19 @@ function report(){
 						title: {
 							display: true,
 							text: 'Vacunas realizadas por mascotas'
-						}
+						},
+						
+						
+						scales: {
+				            yAxes: [{
+				                ticks: {
+				                    beginAtZero: true
+				                }
+				            }]
+				        }
+						
+						
+						
 					}
 				});	
 				};

@@ -7,7 +7,7 @@
 
 	<div id="wrapper">
 
-		<div class="contact">
+		
 			
 			<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -15,7 +15,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+						<h3 th:text="${title}" class="page-header page-header icon-subheading"></h3>
 					</div>					
 					<table class="table table-hover">
 						<thead>
@@ -38,10 +38,7 @@
 								<td th:text="${ad.observacion}"></td>
 								<td th:text="${ad.us_asignado}"></td>
 								<td th:text="${ad.mascota.toString()}"></td>
-								<td><a class="btn btn-sm btn-warning"
-									th:href="@{/adopcion/update/} + ${ad.idadopcion}">&nbsp;Actualizar</a>
-									<a class="btn btn-sm btn-info"
-									th:href="@{/adopcion/retrieve/} + ${ad.idadopcion}">&nbsp;Consultar</a>
+								<td>
 									<a class="btn btn-sm btn-danger"
 									th:href="@{/adopcion/delete/} + ${ad.idadopcion}">&nbsp;Eliminar</a>
 								</td>
@@ -52,7 +49,7 @@
 				</div>
 				<!-- /.container-fluid -->
 			
-		</div>
+		
 
 	</div>
 

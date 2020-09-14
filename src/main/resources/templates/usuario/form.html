@@ -26,10 +26,7 @@
 											<div class="form-group">
 
 												<div class="input-group mb-3">
-													<div class="input-group-prepend">
-														<span class="input-group-text"><i
-															class="fas fa-user fa-2x"></i></span>
-													</div>
+													
 													<input type="text" class="form-control"
 														th:errorclass="'form-control is-invalid'"
 														th:field="*{nombre}" placeholder="Nombre de usuario" /> <small
@@ -37,10 +34,9 @@
 														th:if="${#fields.hasErrors('nombre')}"
 														th:errors="*{nombre}"></small>
 												</div>
+												<hr>
 												<div class="input-group mb-3">
-													<div class="input-group-prepend">
-														<i class="fas fa-key fa-2x"></i>
-													</div>
+													
 													<input type="password" class="form-control"
 														th:errorclass="'form-control is-invalid'"
 														th:field="*{password}" placeholder="Password" /><small
@@ -65,10 +61,9 @@
 																								
 												<div class="btn-group">
 													<button type="submit" class="btn btn-success">
-														<i class="fas fa-save"></i> &nbsp;Guardar
+														 &nbsp;Guardar
 													</button>
-													<a th:href="@{/}" class="btn btn-danger"> <i
-														class="fas fa-times"></i> &nbsp;Cancelar
+													<a th:href="@{/}" class="btn btn-danger">&nbsp;Cancelar
 													</a>
 												</div>
 

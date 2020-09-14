@@ -32,7 +32,7 @@ public class AdopcionController {
 	@GetMapping(value="/create") //https://localhost:8084/adopcion/create
 	public String create(Model model) {
 		Adopcion adopcion = new Adopcion();	
-		model.addAttribute("title", "Registro de nueva adopcion");
+		model.addAttribute("title", "Registro de nueva adopción");
 		model.addAttribute("adopcion", adopcion); 		
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);
@@ -43,7 +43,7 @@ public class AdopcionController {
 	@GetMapping(value="/galeria") //https://localhost:8084/adopcion/create
 	public String galeria(Model model) {
 		List<Adopcion> adopciones=srvAdopcion.findByEstado("DISPONIBLE");
-		model.addAttribute("title", "Registro de nueva adopcion");
+		model.addAttribute("title", "Registro de nueva adopción");
 		model.addAttribute("adopciones", adopciones); 		
 		List<Mascota> mascotas = srvMascota.findAll();
 		model.addAttribute("mascotas", mascotas);
