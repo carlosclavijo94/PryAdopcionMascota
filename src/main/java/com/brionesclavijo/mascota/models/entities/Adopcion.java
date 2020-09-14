@@ -162,8 +162,9 @@ public class Adopcion implements Serializable {
 	}
 
 	public void Actualizar() {
+		fechaAsignacion = LocalDateTime.now();
 		SecurityContext context = SecurityContextHolder.getContext();
-        us_asignado = context.getAuthentication().getName();
+		us_asignado = context.getAuthentication().getName();
         this.estado="RESERVADO";
         
 	}

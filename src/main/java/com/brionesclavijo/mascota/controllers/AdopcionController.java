@@ -83,7 +83,7 @@ public class AdopcionController {
 	public String save2(Adopcion adopcion, Model model)  {
 		adopcion.Actualizar();
 		srvAdopcion.save(adopcion);
-		return "redirect:/adopcion/list";
+		return "redirect:/adopcion/galeria";
 	}
 	
 	
@@ -122,6 +122,4 @@ public class AdopcionController {
 		}		
 	}
 }
-
-
 
