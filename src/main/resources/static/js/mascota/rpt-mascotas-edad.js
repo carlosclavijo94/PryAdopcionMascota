@@ -42,7 +42,7 @@ function report(){
 					}
 				}
 				
-				if(edad[j]>5){
+				if(edad[j]>=5){
 					
 					if(tipom[j]=='PERRO'){
 						perros[2]=1+perros[2];
