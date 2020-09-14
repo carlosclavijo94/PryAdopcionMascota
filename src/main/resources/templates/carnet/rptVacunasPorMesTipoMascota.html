@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div th:replace="layout :: frgImg" class="agileits-banner"></div>
+
+	<div id="wrapper">
+		<div class="container-fluid">
+
+					<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+			</div>
+
+				<div class="contact-agileinfo">
+					<div class="col-md-7 contact-right">
+ 
+					 	<div class="breadcumb-area bg-img" th:style="'background-image:url(' + @{/img/bg-img/breadcumb.jpg} + ');'">		
+							<div class="bradcumbContent">
+								<h2 id="title">Reporte</h2>
+							</div>
+						</div>
+					    
+					    <div class="academy-courses-area section-padding-100-0">
+					        <div class="container">
+					            <!-- div class="row">
+					            	<canvas id="chart-area-1"></canvas>            	
+					            </div> -->
+					            <div class="row">
+					            	<!--  canvas id="chart-area-2" style="display: block; width: 349px; height: 174px;" width="349" height="174" class="chartjs-render-monitor"></canvas>-->
+					            	<canvas id="canvas" style="display: block; width: 654px; height: 327px;" width="654" height="327" class="chartjs-render-monitor"></canvas>
+					            </div>
+					        </div>
+					    </div>
+					    <br>
+					   </div>
+				</div>
+			</div>
+		</div>
+ <footer th:replace="layout :: frgFooter"></footer>
+ <script th:src="@{/js/carnet/rpt-vacunas-por-mes-tipo-mascota.js}"></script>
+ 
+</body>
+
+</html>

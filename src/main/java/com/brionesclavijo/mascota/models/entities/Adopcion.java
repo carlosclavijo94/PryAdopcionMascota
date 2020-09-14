@@ -109,7 +109,7 @@ public class Adopcion implements Serializable {
 	public void setUs_asignado(String us_asignado) {
 		this.us_asignado = us_asignado;
 	}
-
+	
 
 	//Realacion de tablas
 	@JoinColumn(name="fk_mascota", referencedColumnName="pk_mascota")
@@ -161,12 +161,11 @@ public class Adopcion implements Serializable {
 		fechaPublicacion = LocalDateTime.now();
 	}
 
-	@PreUpdate
-	public void preUpdate() {
-		fechaAsignacion = LocalDateTime.now();
+	public void Actualizar() {
 		SecurityContext context = SecurityContextHolder.getContext();
         us_asignado = context.getAuthentication().getName();
         this.estado="RESERVADO";
+        
 	}
 
 }

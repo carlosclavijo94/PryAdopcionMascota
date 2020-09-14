@@ -79,6 +79,12 @@ public class AdopcionController {
 		model.addAttribute("mascotas", mascotas);
 		return "adopcion/adoptar";
 	}
+	@PostMapping(value="/save2") 
+	public String save2(Adopcion adopcion, Model model)  {
+		adopcion.Actualizar();
+		srvAdopcion.save(adopcion);
+		return "redirect:/adopcion/list";
+	}
 	
 	
 	@GetMapping(value="/delete/{id}")

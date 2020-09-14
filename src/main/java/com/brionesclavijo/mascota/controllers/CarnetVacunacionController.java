@@ -18,6 +18,7 @@ import com.brionesclavijo.mascota.models.services.IMascotaService;
 import com.brionesclavijo.mascota.models.entities.Vacuna;
 import com.brionesclavijo.mascota.models.services.IVacunaService;
 import com.brionesclavijo.mascota.models.reporting.rptVacunasPorMascotas;
+import com.brionesclavijo.mascota.models.reporting.rptVacunasPorMesTipoMascota;
 
 @Controller
 @RequestMapping(value="/carnet")  
@@ -98,6 +99,20 @@ public class CarnetVacunacionController {
 	public @ResponseBody List<rptVacunasPorMascotas> dataRptVacunasPorMascotas(Model model) {				
 		try {			
 			return this.srvCarnetVacunacion._rptVacunasPorMascotas();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
+	}
+	@GetMapping(value = "/rptVacunasPorMesTipoMascota")
+	public String rptVacunasPorMesTipoMascota(Model model) {
+		return "carnet/rptVacunasPorMesTipoMascota";				
+	}
+	
+	@GetMapping(value = "/dataRptVacunasPorMesTipoMascota", produces="application/json")
+	public @ResponseBody List<rptVacunasPorMesTipoMascota> dataRptVacunasPorMesTipoMascota(Model model) {				
+		try {			
+			return this.srvCarnetVacunacion._rptVacunasPorMesTipoMascota();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;
